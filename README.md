@@ -136,7 +136,7 @@ For any queries or issues, feel free to reach out to us:
 
 [![Email](https://img.shields.io/badge/HACKINTER-MAIL-red.svg)](mailto:ceh.ec.counselor147@gmail.com)  
 [![Telegram](https://img.shields.io/badge/HACKINTER-T.ME-blue.svg)](https://t.me/chat_with_hackinter_bot)  
-[![Twitter](https://img.shields.io/badge/HACKINTER-TWITTER-gray.svg)](https://x.com/_anonix_z)
+[![Twitter](https://img.shields.io/badge/HACKINTER-TWITTER-gry.svg)](https://x.com/_anonix_z)
 
 
 ---
