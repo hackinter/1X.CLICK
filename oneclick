@@ -57,12 +57,14 @@ list_tools() {
     jq -r '.top_20[].name, .all_tools[].name' "$TOOLS_FILE"
 }
 
-# ব্যানার ফাংশন
+# ব্যানার ফাংশন (লাল কালার)
 show_banner() {
+    echo -e "\e[31m"  # ANSI কোড লাল কালারের জন্য
     echo -e "╔═╗╔╗╔╔═╗  ╔═╗╦  ╦╔═╗╦╔═"
     echo -e "║ ║║║║║╣───║  ║  ║║  ╠╩╗"
     echo -e "╚═╝╝╚╝╚═╝  ╚═╝╩═╝╩╚═╝╩ ╩"
     echo -e "..................[V1.0][@hackinter]\n\n"
+    echo -e "\e[0m"  # ANSI কোড রিসেট, যাতে পরবর্তী টেক্সট সাদা থাকে
     echo -e "Usage:\n"
     echo -e "./oneclick -i top-bughunt-tools [ to install top-bughunting-tools ]"
     echo -e "./oneclick -i toolname [ to install single tools ]"
