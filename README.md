@@ -1,4 +1,4 @@
-# OneClick - Tool Installation Automation v1.0 🚀
+# OneClick - Install tools instantly with a one click
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/hackinter/Archer/releases)
 [![GitHub](https://img.shields.io/badge/GITHUB-HACKINTER-red.svg)](https://github.com/hackinter)
 
