@@ -18,12 +18,11 @@ OneClick is a command-line tool designed to simplify the installation of various
 
 1. **Install Top 20 Bug Hunting Tools**  
    Run the following command to install the top 20 bug hunting tools:
-<h1 align="center">
+
   <br>
   <a href="https://github.com/hackinter/Template/blob/main/Screenshot%20from%202024-11-27%2017-38-30.png" alt="0installer"></a>
   <br>
-  <br>
-</h1>
+ 
 
    ```bash
    ./oneclick -i top-bughunt-tools
