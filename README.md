@@ -3,8 +3,15 @@
   <img src="https://github.com/hackinter/Template/blob/main/1click.png" alt="Logo" />
 </div>
 
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/hackinter/Archer/releases)
-[![GitHub](https://img.shields.io/badge/GITHUB-HACKINTER-red.svg)](https://github.com/hackinter)
+<div align="center">
+  <a href="https://github.com/hackinter/Archer/releases">
+    <img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version">
+  </a>
+  <a href="https://github.com/hackinter">
+    <img src="https://img.shields.io/badge/GITHUB-HACKINTER-red.svg" alt="GitHub">
+  </a>
+</div>
+
 
 OneClick is a command-line tool designed to simplify the installation of various security tools. It automates the process of installing multiple tools from a JSON configuration file, ensuring you have all the essential tools required for bug hunting and other security tasks. 🔧🛠️
 
