@@ -63,7 +63,7 @@ show_banner() {
     echo -e "╔═╗╔╗╔╔═╗  ╔═╗╦  ╦╔═╗╦╔═"
     echo -e "║ ║║║║║╣───║  ║  ║║  ╠╩╗"
     echo -e "╚═╝╝╚╝╚═╝  ╚═╝╩═╝╩╚═╝╩ ╩"
-    echo -e "..................[V1.0][@hackinter]\n\n"
+    echo -e "..................[V1.0][oneclick@hackinter]\n\n"
     echo -e "\e[0m"  # ANSI কোড রিসেট, যাতে পরবর্তী টেক্সট সাদা থাকে
     echo -e "Usage:\n"
     echo -e "./oneclick -i top-bughunt-tools [ to install top-bughunting-tools ]"
