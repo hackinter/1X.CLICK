@@ -85,6 +85,7 @@ Cloning into 'nuclei'...
 The script displays a banner to the user upon execution:
 
 ```
+
 ╔═╗╔╗╔╔═╗  ╔═╗╦  ╦╔═╗╦╔═
 ║ ║║║║║╣───║  ║  ║║  ╠╩╗
 ╚═╝╝╚╝╚═╝  ╚═╝╩═╝╩╚═╝╩ ╩
