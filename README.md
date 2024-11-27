@@ -1,5 +1,4 @@
 # OneClick - Install tools instantly with a one click
-![Logo](https://github.com/hackinter/Template/blob/main/1click.png)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/hackinter/Archer/releases)
 [![GitHub](https://img.shields.io/badge/GITHUB-HACKINTER-red.svg)](https://github.com/hackinter)
 
