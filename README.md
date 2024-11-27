@@ -1,4 +1,8 @@
-# OneClick - Install tools instantly with a one click
+# OneClick - Install tools instantly with a one-click
+<div align="center">
+  <img src="https://github.com/hackinter/Template/blob/main/1click.png" alt="Logo" />
+</div>
+
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/hackinter/Archer/releases)
 [![GitHub](https://img.shields.io/badge/GITHUB-HACKINTER-red.svg)](https://github.com/hackinter)
 
