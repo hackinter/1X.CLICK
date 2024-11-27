@@ -18,11 +18,18 @@ OneClick is a command-line tool designed to simplify the installation of various
 
 1. **Install Top 20 Bug Hunting Tools**  
    Run the following command to install the top 20 bug hunting tools:
+<h1 align="center">
+  <br>
+  <a href="https://github.com/hackinter/Template/blob/main/Screenshot%20from%202024-11-27%2017-38-30.png" alt="0installer"></a>
+  <br>
+  <br>
+</h1>
+
    ```bash
    ./oneclick -i top-bughunt-tools
    ```
 
-2. **Install a Single Tool**  
+3. **Install a Single Tool**  
    To install a specific tool, run the following command:
    ```bash
    ./oneclick -i <toolname>
@@ -32,19 +39,19 @@ OneClick is a command-line tool designed to simplify the installation of various
    ./oneclick -i sublist3r
    ```
 
-3. **Install All Tools**  
+4. **Install All Tools**  
    To install all available tools listed in the JSON file:
    ```bash
    ./oneclick -i all
    ```
 
-4. **List All Tools**  
+5. **List All Tools**  
    To view the list of all available tools:
    ```bash
    ./oneclick -i list
    ```
 
-5. **Install Multiple Tools**  
+6. **Install Multiple Tools**  
    To install multiple tools at once, use the following syntax:
    ```bash
    ./oneclick -b <toolname1>,<toolname2>,<toolname3>
