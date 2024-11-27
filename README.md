@@ -15,7 +15,7 @@ OneClick is a command-line tool designed to simplify the installation of various
 ## Usage 📝
 
 ### Basic Commands
-![OneClick](https://github.com/hackinter/Template/blob/main/Screenshot%20from%202024-11-27%2017-49-56.png)
+![OneClick](https://github.com/hackinter/Template/blob/main/Screenshot%20from%202024-11-27%2017-55-33.png)
 
 1. **Install Top 20 Bug Hunting Tools**  
    Run the following command to install the top 20 bug hunting tools:
