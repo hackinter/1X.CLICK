@@ -13,13 +13,23 @@ install_tool() {
 
     if [[ "$TOOL_TYPE" == "go" ]]; then
         echo -e "Using go install for $TOOL_NAME..."
-        go install "$TOOL_URL" || echo -e "Error installing $TOOL_NAME with go install!"
+        # Automatically fetch the Go tool and install
+        go install "$TOOL_URL" || { echo -e "Error installing $TOOL_NAME with go install!"; return 1; }
     else
         git clone "$TOOL_URL" || { echo -e "Error cloning $TOOL_NAME!"; return 1; }
 
         TOOL_DIR=$(basename "$TOOL_URL" .git)
         echo -e "Checking directory: $TOOL_DIR"
         if [[ -d "$TOOL_DIR" ]]; then
+            # Try to detect if the tool needs building (Go-based tools, for example)
+            if [[ -f "$TOOL_DIR/$TOOL_NAME.go" ]]; then
+                # If a Go file exists, we will automatically build the tool
+                echo -e "Building $TOOL_NAME from source..."
+                cd "$TOOL_DIR" || return 1
+                go build -o "$TOOL_NAME" || { echo -e "Error building $TOOL_NAME!"; return 1; }
+                cd - || return 1
+            fi
+
             TOOL_EXEC_PATH="$TOOL_DIR/$TOOL_NAME"
             if [[ -f "$TOOL_EXEC_PATH" ]]; then
                 echo -e "Copying $TOOL_NAME to /usr/bin..."
