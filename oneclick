@@ -1,40 +1,65 @@
 #!/bin/bash
 
-# JSON ফাইল যেখানে টুলের ডেটা সংরক্ষিত
+# JSON file where the tool data is stored
 TOOLS_FILE="tools.json"
 
-# টুল ইনস্টলেশনের ফাংশন
+# Tool installation function
 install_tool() {
     TOOL_NAME=$1
     TOOL_URL=$2
+    TOOL_TYPE=$3
 
     echo -e "Installing $TOOL_NAME..."
-    git clone "$TOOL_URL" || echo -e "Error installing $TOOL_NAME!"
+
+    if [[ "$TOOL_TYPE" == "go" ]]; then
+        echo -e "Using go install for $TOOL_NAME..."
+        go install "$TOOL_URL" || echo -e "Error installing $TOOL_NAME with go install!"
+    else
+        git clone "$TOOL_URL" || { echo -e "Error cloning $TOOL_NAME!"; return 1; }
+
+        TOOL_DIR=$(basename "$TOOL_URL" .git)
+        echo -e "Checking directory: $TOOL_DIR"
+        if [[ -d "$TOOL_DIR" ]]; then
+            TOOL_EXEC_PATH="$TOOL_DIR/$TOOL_NAME"
+            if [[ -f "$TOOL_EXEC_PATH" ]]; then
+                echo -e "Copying $TOOL_NAME to /usr/bin..."
+                sudo cp "$TOOL_EXEC_PATH" /usr/bin/
+                sudo chmod +x /usr/bin/"$TOOL_NAME"
+                echo -e "$TOOL_NAME has been successfully moved to /usr/bin."
+            else
+                echo -e "Executable file for $TOOL_NAME not found."
+            fi
+        else
+            echo -e "Failed to find $TOOL_NAME directory after cloning."
+        fi
+    fi
 }
 
-# সেরা ২০ টুল ইনস্টল ফাংশন
+# Install top 20 tools function
 install_top_20() {
     echo -e "\n[+] Installing Top 20 Tools...\n"
     jq -c '.top_20[]' "$TOOLS_FILE" | while read -r TOOL; do
         NAME=$(echo "$TOOL" | jq -r '.name')
         URL=$(echo "$TOOL" | jq -r '.url')
-        install_tool "$NAME" "$URL"
+        TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
+        install_tool "$NAME" "$URL" "$TOOL_TYPE"
     done
     echo -e "\n[+] All Top 20 Tools Installed Successfully!\n"
 }
 
-# সকল টুল ইনস্টল ফাংশন
+# Install all tools function
 install_all_tools() {
     echo -e "\n[+] Installing All Tools...\n"
     jq -c '.top_20[], .all_tools[]' "$TOOLS_FILE" | while read -r TOOL; do
         NAME=$(echo "$TOOL" | jq -r '.name')
         URL=$(echo "$TOOL" | jq -r '.url')
-        install_tool "$NAME" "$URL"
+        TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
+        install_tool "$NAME" "$URL" "$TOOL_TYPE"
     done
     echo -e "\n[+] All Tools Installed Successfully!\n"
 }
 
-# নির্দিষ্ট টুল ইনস্টল ফাংশন
+# Install selected tools function
 install_selected_tools() {
     echo -e "\n[+] Installing Selected Tools...\n"
     IFS=',' read -ra TOOL_LIST <<< "$1"
@@ -43,7 +68,8 @@ install_selected_tools() {
         if [[ -n $TOOL ]]; then
             NAME=$(echo "$TOOL" | jq -r '.name')
             URL=$(echo "$TOOL" | jq -r '.url')
-            install_tool "$NAME" "$URL"
+            TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
+            install_tool "$NAME" "$URL" "$TOOL_TYPE"
         else
             echo "[-] Tool $TOOL_NAME not found in JSON file."
         fi
@@ -51,35 +77,35 @@ install_selected_tools() {
     echo -e "\n[+] Selected Tools Installed Successfully!\n"
 }
 
-# টুল লিস্ট দেখানোর ফাংশন
+# List all available tools
 list_tools() {
     echo -e "\n[+] Available Tools:\n"
     jq -r '.top_20[].name, .all_tools[].name' "$TOOLS_FILE"
 }
 
-# ব্যানার ফাংশন (লাল কালার)
+# Banner function (Red color)
 show_banner() {
-    echo -e "\e[31m"  # ANSI কোড লাল কালারের জন্য
+    echo -e "\e[31m"  # ANSI code for red color
     echo -e "╔═╗╔╗╔╔═╗  ╔═╗╦  ╦╔═╗╦╔═"
     echo -e "║ ║║║║║╣───║  ║  ║║  ╠╩╗"
     echo -e "╚═╝╝╚╝╚═╝  ╚═╝╩═╝╩╚═╝╩ ╩"
-    echo -e "..[V1.0][oneclick@hackinter]\n\n"
-    echo -e "\e[0m"  # ANSI কোড রিসেট, যাতে পরবর্তী টেক্সট সাদা থাকে
+    echo -e ">>V1.0>oneclick@hackinter]\n\n"
+    echo -e "\e[0m"  # ANSI code reset to default color
     echo -e "Usage:\n"
-    echo -e "./oneclick -i top-bughunt-tools [ to install top-bughunting-tools ]"
-    echo -e "./oneclick -i toolname [ to install single tools ]"
+    echo -e "./oneclick -i top-bughunt-tools [ to install top bug hunting tools ]"
+    echo -e "./oneclick -i toolname [ to install single tool ]"
     echo -e "./oneclick -i all [ to install all tools ]"
     echo -e "./oneclick -i list [ to list all tools ]"
     echo -e "./oneclick -b toolname,toolname [ to install multiple tools ]\n"
 }
 
-# হেল্প ফাংশন
+# Help function
 usage() {
     show_banner
     exit 1
 }
 
-# স্ক্রিপ্ট কমান্ড লাইন প্যারামিটার প্রসেস
+# Command line parameter processing
 if [[ "$#" -eq 0 ]]; then
     usage
 fi
