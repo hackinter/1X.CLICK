@@ -99,7 +99,7 @@ show_banner() {
     echo -e "╔═╗╔╗╔╔═╗  ╔═╗╦  ╦╔═╗╦╔═"
     echo -e "║ ║║║║║╣───║  ║  ║║  ╠╩╗"
     echo -e "╚═╝╝╚╝╚═╝  ╚═╝╩═╝╩╚═╝╩ ╩"
-    echo -e ">>V1.0>oneclick@hackinter]\n\n"
+    echo -e ">>V2.0>oneclick@hackinter]\n\n"
     echo -e "\e[0m"  # ANSI code reset to default color
     echo -e "Usage:\n"
     echo -e "./oneclick -i top-bughunt-tools [ to install top bug hunting tools ]"
