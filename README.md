@@ -29,7 +29,7 @@ OneClick is a command-line tool designed to simplify the installation of various
 ![OneClick](https://github.com/hackinter/Template/blob/main/Screenshot%20from%202024-11-27%2017-55-33.png)
 
 1. **Install Top 20 Bug Hunting Tools**  
-   Run the following command to install the top 20 bug hunting tools:
+   Run the following command to install the top 20 bug-hunting tools:
 
  
 
@@ -137,10 +137,10 @@ Here is the updated section for the `README.md` with similar formatting and tone
 ---
 
 ## License 📜
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/hackinter/oneclick/blob/main/LICENSE) file for more details.
+This project is licensed under the MIT License. For more details, see the [LICENSE](https://github.com/hackinter/oneclick/blob/main/LICENSE) file.
 
 ## Contributing 🤝
-We welcome contributions! If you would like to contribute, feel free to fork the repository and submit a pull request. If you encounter any bugs or have suggestions, please open an issue.
+We welcome contributions! If you'd like to contribute, you can fix the repository and submit a pull request. If you encounter any bugs or have suggestions, please open an issue.
 
 ## Contact 📧
 For any queries or issues, feel free to reach out to us:
