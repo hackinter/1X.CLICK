@@ -9,38 +9,38 @@ install_tool() {
     TOOL_URL=$2
     TOOL_TYPE=$3
 
-    echo -e "Installing $TOOL_NAME..."
+    echo -e "\e[32m[+] Installing $TOOL_NAME...\e[0m"
 
     if [[ "$TOOL_TYPE" == "go" ]]; then
-        echo -e "Using go install for $TOOL_NAME..."
+        echo -e "\e[33m[>] Using go install for $TOOL_NAME...\e[0m"
         # Automatically fetch the Go tool and install
-        go install "$TOOL_URL" || { echo -e "Error installing $TOOL_NAME with go install!"; return 1; }
+        go install "$TOOL_URL" || { echo -e "\e[31m[!] Error installing $TOOL_NAME with go install!\e[0m"; return 1; }
     else
-        git clone "$TOOL_URL" || { echo -e "Error cloning $TOOL_NAME!"; return 1; }
+        git clone "$TOOL_URL" || { echo -e "\e[31m[!] Error cloning $TOOL_NAME!\e[0m"; return 1; }
 
         TOOL_DIR=$(basename "$TOOL_URL" .git)
-        echo -e "Checking directory: $TOOL_DIR"
+        echo -e "\e[33m[>] Checking directory: $TOOL_DIR\e[0m"
         if [[ -d "$TOOL_DIR" ]]; then
             # Try to detect if the tool needs building (Go-based tools, for example)
             if [[ -f "$TOOL_DIR/$TOOL_NAME.go" ]]; then
                 # If a Go file exists, we will automatically build the tool
-                echo -e "Building $TOOL_NAME from source..."
+                echo -e "\e[33m[>] Building $TOOL_NAME from source...\e[0m"
                 cd "$TOOL_DIR" || return 1
-                go build -o "$TOOL_NAME" || { echo -e "Error building $TOOL_NAME!"; return 1; }
+                go build -o "$TOOL_NAME" || { echo -e "\e[31m[!] Error building $TOOL_NAME!\e[0m"; return 1; }
                 cd - || return 1
             fi
 
             TOOL_EXEC_PATH="$TOOL_DIR/$TOOL_NAME"
             if [[ -f "$TOOL_EXEC_PATH" ]]; then
-                echo -e "Copying $TOOL_NAME to /usr/bin..."
+                echo -e "\e[32m[+] Copying $TOOL_NAME to /usr/bin...\e[0m"
                 sudo cp "$TOOL_EXEC_PATH" /usr/bin/
                 sudo chmod +x /usr/bin/"$TOOL_NAME"
-                echo -e "$TOOL_NAME has been successfully moved to /usr/bin."
+                echo -e "\e[32m[+] $TOOL_NAME has been successfully moved to /usr/bin.\e[0m"
             else
-                echo -e "Executable file for $TOOL_NAME not found."
+                echo -e "\e[31m[!] Executable file for $TOOL_NAME not found.\e[0m"
             fi
         else
-            echo -e "Failed to find $TOOL_NAME directory after cloning."
+            echo -e "\e[31m[!] Failed to find $TOOL_NAME directory after cloning.\e[0m"
         fi
     fi
 }
@@ -54,7 +54,7 @@ install_top_20() {
         TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
         install_tool "$NAME" "$URL" "$TOOL_TYPE"
     done
-    echo -e "\n[+] All Top 20 Tools Installed Successfully!\n"
+    echo -e "\n\e[32m[+] All Top 20 Tools Installed Successfully!\e[0m\n"
 }
 
 # Install all tools function
@@ -66,7 +66,7 @@ install_all_tools() {
         TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
         install_tool "$NAME" "$URL" "$TOOL_TYPE"
     done
-    echo -e "\n[+] All Tools Installed Successfully!\n"
+    echo -e "\n\e[32m[+] All Tools Installed Successfully!\e[0m\n"
 }
 
 # Install selected tools function
@@ -81,10 +81,10 @@ install_selected_tools() {
             TOOL_TYPE=$(echo "$TOOL" | jq -r '.type // "git"')  # default to git if type is not defined
             install_tool "$NAME" "$URL" "$TOOL_TYPE"
         else
-            echo "[-] Tool $TOOL_NAME not found in JSON file."
+            echo -e "\e[31m[-] Tool $TOOL_NAME not found in JSON file.\e[0m"
         fi
     done
-    echo -e "\n[+] Selected Tools Installed Successfully!\n"
+    echo -e "\n\e[32m[+] Selected Tools Installed Successfully!\e[0m\n"
 }
 
 # List all available tools
