@@ -1,4 +1,4 @@
-{
+{2
   "top_20": [
     { "name": "sublist3r", "url": "https://github.com/aboul3la/Sublist3r", "install_command": "go install github.com/aboul3la/Sublist3r@latest" },
     { "name": "nuclei", "url": "https://github.com/projectdiscovery/nuclei", "install_command": "go install github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest" },
